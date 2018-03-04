@@ -16,19 +16,35 @@ import warnings
 from sklearn.metrics import precision_score, recall_score
 warnings.filterwarnings("ignore")
 
+#Getting MNIST data
 mnist = fetch_mldata('MNIST original')
+
+#Dividing the data into Label and Target
 X,y=mnist["data"],mnist["target"]
 
+#Dividing the data into Training Dataset and Testing Dataset
 X_train, X_test, y_train, y_test = X[:60000], X[60000:], y[:60000], y[60000:]
 shuffle_index = np.random.permutation(60000)
 X_train, y_train = X_train[shuffle_index], y_train[shuffle_index]
-"""
+
+
+# Naive bayse
 gnb = GaussianNB()
+
+#Traing my model
 gnb.fit(X_train, y_train)
+
+#prediction
 y_pred_sgd = gnb.predict(X_test)
+
+#Accuracy
 acc_gnb = accuracy_score(y_test, y_pred_sgd)
 
 print ("Gaussian Naive Bayes accuracy: ",acc_gnb)
+
+
+"""Sometimes You will get 99% Accuracy but you need to check the cross validation values 
+and precision score as well as the recall score. """
 
 cross_val=cross_val_score(gnb, X_train, y_train, cv=3, scoring="accuracy")
 print(cross_val)
@@ -37,7 +53,14 @@ print(y_train_pred)
 conf_mx=confusion_matrix(y_train, y_train_pred)
 print(conf_mx)
 ps=precision_score(y_train, y_train_pred,average="macro")
-print(ps)
+print("precision score:",ps)
+rs=recall_score(y_train, y_train_pred,average="macro")
+print("Recall Score:",rs)
+
+"""Here i am showing you the graph of the confussion matrix. more the bright more erroneous it is. 
+    so by getting the confussion matrix graph we canlearn from it and we can change the values of 
+    classifier or by removing the noise from the images we can get the optimized result"""
+
 plt.matshow(conf_mx, cmap=plt.cm.gray)
 plt.show()
 print("_"*100)
@@ -57,7 +80,9 @@ print(y_train_pred)
 conf_mx=confusion_matrix(y_train, y_train_pred)
 print(conf_mx)
 ps=precision_score(y_train, y_train_pred,average="macro")
-print(ps)
+print("precision score:",ps)
+rs=recall_score(y_train, y_train_pred,average="macro")
+print("Recall Score:",rs)
 plt.matshow(conf_mx, cmap=plt.cm.gray)
 plt.show()
 print("_"*100)
@@ -74,7 +99,9 @@ print(y_train_pred)
 conf_mx=confusion_matrix(y_train, y_train_pred)
 print(conf_mx)
 ps=precision_score(y_train, y_train_pred,average="macro")
-print(ps)
+print("precision score:",ps)
+rs=recall_score(y_train, y_train_pred,average="macro")
+print("Recall Score:",rs)
 plt.matshow(conf_mx, cmap=plt.cm.gray)
 plt.show()
 print("_"*100)
@@ -92,24 +119,9 @@ print(y_train_pred)
 conf_mx=confusion_matrix(y_train, y_train_pred)
 print(conf_mx)
 ps=precision_score(y_train, y_train_pred,average="macro")
-print(ps)
-plt.matshow(conf_mx, cmap=plt.cm.gray)
-plt.show()
-print("_"*100)
-"""
-clf_knn = KNeighborsClassifier()
-clf_knn.fit(X_train, y_train)
-y_pred_knn = clf_knn.predict(X_test)
-acc_knn = accuracy_score(y_test, y_pred_knn)
-print ("nearest neighbors accuracy: ",acc_knn)
-cross_val=cross_val_score(clf_knn, X_train, y_train, cv=3, scoring="accuracy")
-print(cross_val)
-y_train_pred = cross_val_predict(clf_knn, X_train, y_train, cv=3)
-print(y_train_pred)
-conf_mx=confusion_matrix(y_train, y_train_pred)
-print(conf_mx)
-ps=precision_score(y_train, y_train_pred,average="macro")
-print(ps)
+print("precision score:",ps)
+rs=recall_score(y_train, y_train_pred,average="macro")
+print("Recall Score:",rs)
 plt.matshow(conf_mx, cmap=plt.cm.gray)
 plt.show()
 print("_"*100)
