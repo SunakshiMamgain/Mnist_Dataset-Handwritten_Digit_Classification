@@ -1,5 +1,5 @@
 # Mnist_Dataset-Handwritten_Digit_Classification
-MNIST digit classification with scikit-learn, Support Vector Machine (SVM), stochastic gradient descent,Random Forest and KNN Classifier
+MNIST digit classification with scikit-learn, Support Vector Machine (SVM), Naive Bayse, Random Forest and Decision Tree Classifier
 
 # Mnist_Handwritten_Digit_Classification
 MNIST digit classification with scikit-learn, Support Vector Machine (SVM), Naive Bayse, Random Forest and Decision Tree Classifier
